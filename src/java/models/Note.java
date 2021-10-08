@@ -8,8 +8,8 @@ public class Note implements Serializable {
     String contents;
 
     public Note() {
-        this.contents = "";
         this.title = "";
+        this.contents = "";
     }
     
     public Note(String title, String contents) {

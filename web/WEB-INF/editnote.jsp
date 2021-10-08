@@ -17,10 +17,10 @@
         <!---->
         <form method="POST" action="note">
             <label>Title:</label>
-            <input type="text" name="editTitle" value="">
+            <input type="text" name="editTitle" value="This is the title">
             <br><br>
             <label>Contents:</label>
-            <textarea type="text" name="editContents" value="}"></textarea>
+            <textarea type="text" name="editContents">Contents go here</textarea>
             <br>
             <input type="submit" name="save" value="Save">
             
