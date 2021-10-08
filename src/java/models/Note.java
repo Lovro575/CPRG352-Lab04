@@ -7,11 +7,6 @@ public class Note implements Serializable {
     String title;
     String contents;
 
-    public Note() {
-        this.title = "";
-        this.contents = "";
-    }
-    
     public Note(String title, String contents) {
         this.title = title;
         this.contents = contents;

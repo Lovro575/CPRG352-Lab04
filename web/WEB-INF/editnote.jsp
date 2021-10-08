@@ -14,14 +14,14 @@
     <body>
         <h1>Simple Note Keeper</h1>
         <h2>Edit Note</h2>
-        <!---->
+
         <form method="POST" action="note">
             <label>Title:</label>
             <input type="text" name="editTitle" value="This is the title">
             <br><br>
             <label>Contents:</label>
             <textarea type="text" name="editContents">Contents go here</textarea>
-            <br>
+            <br><br>
             <input type="submit" name="save" value="Save">
             
         </form>
