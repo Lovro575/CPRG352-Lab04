@@ -20,25 +20,26 @@ public class NoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String userPage = request.getParameter("edit");
+        String userPage = request.getParameter("edit");        
         String title;
         String contents;
-        
+
         String path = getServletContext().getRealPath("/WEB-INF/note.txt");
         BufferedReader br = new BufferedReader(new FileReader(new File(path)));
 
         title = br.readLine();
         contents = br.readLine();
+
+        Note noteView = new Note(title, contents);
+        request.setAttribute("note", noteView);
         
-        Note noteEdits = new Note(title, contents);
-        request.setAttribute("note", noteEdits);
         
         if(userPage == null) {
             getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request, response);
         }        
-
+        
         br.close();
         return;
 
@@ -47,22 +48,24 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
+            
         String title = request.getParameter("editTitle");
         String contents = request.getParameter("editContents");
         
-        String path = getServletContext().getRealPath("/WEB-INF/note.txt");        
+        Note noteEdits = new Note(title, contents);
+        
+        request.setAttribute("note", noteEdits);
+        
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
 
         pw.write(title);
         pw.write(contents);
-        pw.close();
-        
-        Note noteEdits = new Note(title, contents);
-
-        
         
         getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
+        
+        pw.close();
+
         
     }
 }
