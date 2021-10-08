@@ -17,10 +17,10 @@
         
         <form>
             <label><b>Title</b></label>
-            <input name="editTitle" value="">
+            <input type="text" name="editTitle" value="">
             <br><br>
             <label><b>Contents</b></label>
-            <textarea name="editContents" value=""></textarea>
+            <input type="text" name="editContents" value="">
             <br>
             <input type="submit" name="save" value="Save">
             

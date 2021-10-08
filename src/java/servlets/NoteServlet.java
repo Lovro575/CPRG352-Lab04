@@ -19,9 +19,8 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userPage;
-        userPage = request.getParameter("edit");
         
+        String userPage = request.getParameter("edit");
         String title;
         String contents;
         
@@ -48,32 +47,22 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String title;
-        String contents;
-        String submit;
+               
+        String title = request.getParameter("editTitle");
+        String contents = request.getParameter("editContents");
         
         String path = getServletContext().getRealPath("/WEB-INF/note.txt");        
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
-         
-        title = request.getParameter("editTitle");
-        contents = request.getParameter("editContents");
-        submit = request.getParameter("save");
-        
+
         pw.write(title);
         pw.write(contents);
+        pw.close();
         
         Note noteEdits = new Note(title, contents);
-        request.setAttribute("note", noteEdits);
+
+        
+        
+        getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
+        
     }
 }
-
-//            //validation
-//            if(title == null || title.equals("") || contents == null || contents.equals("")) {
-//
-//                request.setAttribute("errorMessage", true);
-//                getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request, response);
-//
-//                return;
-//        }
-
